@@ -1,7 +1,7 @@
 import './ThemesList.css'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteTheme, deleteSelectedThemes, clearToast } from '../store/themeSlice'
+import { deleteTheme, deleteSelectedThemes, clearToast, editTheme } from '../store/themeSlice'
 import Toast from './Toast'
 
 const ThemesList = ({ onCreateTheme }) => {
@@ -11,6 +11,18 @@ const ThemesList = ({ onCreateTheme }) => {
   const savedThemes = useSelector((state) => state.theme.savedThemes)
   const toast = useSelector((state) => state.theme.toast)
   const dispatch = useDispatch()
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveDropdown(null)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const handleSelectTheme = (themeId) => {
     setSelectedThemes(prev => 
@@ -31,6 +43,8 @@ const ThemesList = ({ onCreateTheme }) => {
   const handleDropdownAction = (action, themeId) => {
     if (action === 'delete') {
       dispatch(deleteTheme(themeId))
+    } else if (action === 'edit') {
+      dispatch(editTheme(themeId))
     }
     setActiveDropdown(null)
   }
@@ -103,25 +117,27 @@ const ThemesList = ({ onCreateTheme }) => {
                 <td>{theme.createdAt}</td>
                 <td>{theme.usedIn}</td>
                 <td className="actions-cell">
-                  <button
-                    className="actions-btn"
-                    onClick={() => setActiveDropdown(activeDropdown === theme.id ? null : theme.id)}
-                  >
-                    ⋯
-                  </button>
-                  {activeDropdown === theme.id && (
-                    <div className="actions-dropdown">
-                      <button onClick={() => handleDropdownAction('duplicate', theme.id)}>
-                        Duplicate
-                      </button>
-                      <button onClick={() => handleDropdownAction('delete', theme.id)}>
-                        Delete
-                      </button>
-                      <button onClick={() => handleDropdownAction('edit', theme.id)}>
-                        Edit
-                      </button>
-                    </div>
-                  )}
+                  <div className="actions-container" ref={dropdownRef}>
+                    <button
+                      className="actions-btn"
+                      onClick={() => setActiveDropdown(activeDropdown === theme.id ? null : theme.id)}
+                    >
+                      ⋯
+                    </button>
+                    {activeDropdown === theme.id && (
+                      <div className="actions-dropdown">
+                        <button onClick={() => handleDropdownAction('duplicate', theme.id)}>
+                          Duplicate
+                        </button>
+                        <button onClick={() => handleDropdownAction('delete', theme.id)}>
+                          Delete
+                        </button>
+                        <button onClick={() => handleDropdownAction('edit', theme.id)}>
+                          Edit
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}

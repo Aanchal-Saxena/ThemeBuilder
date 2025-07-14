@@ -61,7 +61,8 @@ const BaseTextEditor = ({
   const fontOptions = ['Arial', 'Helvetica', 'Times New Roman', 'Georgia', 'Verdana']
 
   const handleFontSizeChange = (value) => {
-    const newSize = Math.max(8, Math.min(72, parseInt(value) || 16))
+    const maxSize = type === 'title' ? 30 : 20
+    const newSize = Math.max(8, Math.min(maxSize, parseInt(value) || 16))
     dispatch(setSize(newSize))
   }
 

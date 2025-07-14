@@ -2,6 +2,8 @@
 
 A comprehensive React application for creating, managing, and previewing themes with real-time iPhone mockup preview.
 
+🚀 **Live Demo**: [themebuilderapp.netlify.app](https://themebuilderapp.netlify.app)
+
 ## 🚀 Features Implemented
 
 ### Theme Creation & Editing
@@ -12,15 +14,19 @@ A comprehensive React application for creating, managing, and previewing themes 
 - **Color Picker**: Stylish dropdown with 8 predefined colors including primary theme color
 - **Font Selection**: Choose from 5 popular fonts (Arial, Helvetica, Times New Roman, Georgia, Verdana)
 - **Text Alignment**: Left, center, and right alignment options with visual icons
-- **Font Size Control**: Increment/decrement arrows or direct input (8-72px range)
+- **Font Size Control**: Increment/decrement arrows or direct input (8-30px for titles, 8-20px for subtitles)
 - **Character Limits**: 50 characters for titles, 100 characters for subtitles
 
 ### Theme Management
 - **Save Themes**: Save created themes with automatic navigation and toast notifications
+- **Local Storage**: Themes are automatically saved to browser's localStorage for persistence
 - **Themes List**: Comprehensive table view of all saved themes
-- **Search Functionality**: Search themes by name
+- **Search Functionality**: Search themes by name with real-time filtering
 - **Bulk Operations**: Select multiple themes for batch deletion
 - **Individual Actions**: Three-dot dropdown menu with Duplicate, Delete, and Edit options
+- **Edit Themes**: Click Edit to navigate to theme editor with pre-filled data from localStorage
+- **Update Existing Themes**: Edit mode updates existing themes instead of creating new ones
+- **Smart Navigation**: Back button navigates to themes list when themes exist
 - **Theme Details**: Display theme name, creation date, and usage information
 
 ### Navigation & User Experience
@@ -62,11 +68,15 @@ src/
 │   ├── ThemesList.jsx           # Themes management table
 │   ├── TitleEditor.jsx          # Title-specific editor wrapper
 │   └── Toast.jsx                # Notification component
+├── hooks/
+│   └── useLocalStorage.js       # Custom hook for localStorage sync
 ├── store/
 │   ├── store.js                 # Redux store configuration
 │   └── themeSlice.js           # Theme state management
 ├── styles/
 │   └── colors.css              # CSS variables and theme colors
+├── utils/
+│   └── localStorage.js          # localStorage utility functions
 └── main.jsx                    # Application entry point
 ```
 
@@ -111,13 +121,15 @@ src/
 
 3. **Themes Management** (After saving themes):
    - Shows themes table with search and delete functionality
-   - Click "Create Theme +" → New theme editor
-   - Use three-dot menu for individual theme actions
+   - Click "Create Theme +" → New theme editor with default values
+   - Use three-dot menu for individual theme actions (Edit loads existing theme data)
    - Select multiple themes for bulk operations
 
 4. **Auto-Navigation**:
    - Delete all themes → Automatically returns to welcome screen
    - Save theme → Automatically navigates to themes list
+   - Back button → Navigates to themes list if themes exist, otherwise welcome screen
+   - Edit theme → Loads existing theme data in editor with "Update Theme" button
 
 ## 🚀 Getting Started
 
@@ -161,11 +173,11 @@ src/
 
 ## 🎯 Current Limitations
 
-- Theme editing from themes list (Edit action in dropdown)
-- Theme duplication functionality
-- Advanced color picker (currently preset colors only)
+- Theme duplication functionality (Duplicate option in dropdown)
+- Advanced color picker (currently 9 preset colors only)
 - Export/Import theme functionality
 - Theme categories and tagging
+- Additional theme elements beyond title/subtitle banners
 
 ## 🚧 Future Enhancements
 

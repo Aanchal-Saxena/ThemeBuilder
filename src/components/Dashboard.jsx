@@ -2,7 +2,7 @@ import './Dashboard.css'
 import DashboardHeader from './DashboardHeader'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setShowThemesList, clearToast } from '../store/themeSlice'
+import { setShowThemesList, clearToast, resetTheme } from '../store/themeSlice'
 import CreateTheme from './CreateTheme'
 import ThemesList from './ThemesList'
 import Toast from './Toast'
@@ -10,24 +10,35 @@ import Toast from './Toast'
 const Dashboard = ({ activeItem }) => {
   const [showCreateTheme, setShowCreateTheme] = useState(false)
   const showThemesList = useSelector((state) => state.theme.showThemesList)
+  const isEditing = useSelector((state) => state.theme.isEditing)
   const toast = useSelector((state) => state.theme.toast)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (showThemesList) {
+    if (showThemesList && !isEditing) {
       setShowCreateTheme(false)
+    } else if (isEditing) {
+      setShowCreateTheme(true)
     }
-  }, [showThemesList])
+  }, [showThemesList, isEditing])
 
   const savedThemes = useSelector((state) => state.theme.savedThemes)
 
-  if (showCreateTheme) {
-    return <CreateTheme onBack={() => setShowCreateTheme(false)} />
+  if (showCreateTheme || isEditing) {
+    return <CreateTheme onBack={() => {
+      setShowCreateTheme(false)
+      if (isEditing) {
+        dispatch(resetTheme())
+      }
+      if (savedThemes.length > 0) {
+        dispatch(setShowThemesList(true))
+      }
+    }} />
   }
 
   if (showThemesList && savedThemes.length > 0) {
     return <ThemesList onCreateTheme={() => {
-      dispatch(setShowThemesList(false))
+      dispatch(resetTheme())
       setShowCreateTheme(true)
     }} />
   }
@@ -50,7 +61,10 @@ const Dashboard = ({ activeItem }) => {
             </p>
           </div>
           
-          <button className="create-button" onClick={() => setShowCreateTheme(true)}>
+          <button className="create-button" onClick={() => {
+            dispatch(resetTheme())
+            setShowCreateTheme(true)
+          }}>
             Create New Theme
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="plus-icon">
               <path d="M12 5v14m-7-7h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
