@@ -19,7 +19,7 @@ const BaseTextEditor = ({
 
   const colorOptions = [
     '#FD5F03', '#FF6B6B', '#4ECDC4', '#45B7D1', 
-    '#96CEB4', '#FFEAA7', '#DDA0DD', '#000000'
+    '#96CEB4', '#FFEAA7', '#DDA0DD', '#666666', '#000000'
   ]
 
   useEffect(() => {
