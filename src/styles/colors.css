@@ -1,0 +1,13 @@
+:root {
+  --primary-color: #FD5F03;
+  --secondary-color: #FFF3ED;
+  --subtitle-color: #787878;
+  --gradient-start: #FF4400;
+  --gradient-end: #F7931E;
+  --card-title-color: #545251;
+  --card-desc-color: #919191;
+  --nav-title-color: #000000;
+  --nav-subtitle-color: #868686;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-sf-pro: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}

@@ -1,0 +1,121 @@
+@import '../styles/colors.css';
+
+.dashboard {
+  flex: 1;
+  background-color: white;
+  margin: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 24px;
+  padding: 10px;
+}
+
+.dashboard-content {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+}
+
+.images-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.theme-image {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.main-title {
+  font-family: var(--font-poppins);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--card-title-color);
+  margin-bottom: 20px;
+}
+
+.description-wrapper {
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.main-description {
+  font-family: var(--font-sf-pro);
+  font-size: 16px;
+  color: var(--card-desc-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.create-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-family: var(--font-sf-pro);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 12px rgba(253, 95, 3, 0.3);
+  transition: all 0.2s ease;
+}
+
+.create-button:hover {
+  background-color: #e54f02;
+}
+
+.cards-section {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+  height: 172px;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.card-title {
+  font-family: var(--font-poppins);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--card-title-color);
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-family: var(--font-sf-pro);
+  font-size: 14px;
+  color: var(--card-desc-color);
+  line-height: 1.5;
+}

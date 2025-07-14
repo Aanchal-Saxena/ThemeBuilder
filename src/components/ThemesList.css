@@ -1,0 +1,184 @@
+@import '../styles/colors.css';
+
+.themes-list {
+  flex: 1;
+  background-color: white;
+  margin: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 24px;
+  padding: 30px;
+}
+
+.themes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.themes-title {
+  font-family: var(--font-poppins);
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.create-theme-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: var(--font-sf-pro);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.create-theme-btn:hover {
+  background-color: #e54f02;
+}
+
+.themes-controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  width: 40%;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: var(--font-sf-pro);
+  font-size: 14px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+}
+
+.delete-btn {
+  background-color: #E0EDFE;
+  color: #3F80F6;
+  border: 1px solid #3F80F6;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: var(--font-sf-pro);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background-color: #3F80F6;
+  color: white;
+}
+
+.delete-btn:disabled {
+  background-color: #f5f5f5;
+  color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.themes-table-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.themes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.themes-table th {
+  background-color: #f8f9fa;
+  padding: 16px;
+  text-align: left;
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.themes-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: var(--font-sf-pro);
+  font-size: 14px;
+  color: #666;
+}
+
+.themes-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.theme-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.actions-cell {
+  position: relative;
+  text-align: center;
+}
+
+.actions-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.actions-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.actions-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  min-width: 120px;
+}
+
+.actions-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  font-family: var(--font-sf-pro);
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.actions-dropdown button:hover {
+  background-color: #f8f9fa;
+}
+
+.actions-dropdown button:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.actions-dropdown button:last-child {
+  border-radius: 0 0 8px 8px;
+}
